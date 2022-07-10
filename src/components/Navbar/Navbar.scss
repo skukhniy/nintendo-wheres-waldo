@@ -1,0 +1,17 @@
+.Navbar{
+  background-color: rgb(123, 46, 123);
+  height:64px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  z-index: 10;
+
+  .Logo{
+    h2{
+      color:white;
+      font-family:'Lucida Sans';
+      padding-left: 10px;
+      margin: 0;
+    }
+  }
+}
