@@ -6,8 +6,8 @@ import GameRender from './components/Game/GameRender';
 function App() {
   return (
     <div className="App">
-      <Navbar></Navbar>
-      <GameRender></GameRender>
+      <Navbar />
+      <GameRender />
     </div>
   );
 }

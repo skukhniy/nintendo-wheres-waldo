@@ -1,17 +1,46 @@
+@mixin header {
+  color:white;
+  font-family:'Lucida Sans';
+}
+
 .Navbar{
   background-color: rgb(123, 46, 123);
   height:64px;
+  width:100%;
   display: flex;
   align-items: center;
-  position: sticky;
+  position: fixed;
+  justify-content: space-between;
   z-index: 10;
+  h3{
+    @include header;
+  }
+  h2{
+    @include header;
+    padding-left: 10px;
+    margin: 0;
+  }
 
   .Logo{
-    h2{
-      color:white;
-      font-family:'Lucida Sans';
-      padding-left: 10px;
-      margin: 0;
+
+  }
+  .hidingChars{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:40%;
+    div{
+      display: flex;
+      flex-direction: row;
+
+      img{
+        height:60px;
+        margin-right:20px;
+      }
     }
+
+  }
+  .timerContainer{
+    padding-right:10px;
   }
 }
