@@ -17,6 +17,10 @@ export default function GameRender() {
   //     console.log(document.data());
   //   });
   function returnCordinates(e) {
+    console.log(e);
+    // grab max width/height of the page:
+    const mWidth = e.view.outerWidth;
+    const mHeight = e.target.height;
     // gets the current click cordinates in relation to the image
     const { offsetX } = e.nativeEvent;
     const { offsetY } = e.nativeEvent;
@@ -35,7 +39,12 @@ export default function GameRender() {
     console.log(`X: ${targX}`);
     console.log(`Y: ${targY}`);
     return {
-      clickedX: offsetX, clickedY: offsetY, targetX: targX, targetY: targY,
+      clickedX: offsetX,
+      clickedY: offsetY,
+      targetX: targX,
+      targetY: targY,
+      maxWidth: mWidth,
+      maxHeight: mHeight,
     };
   }
   // 1842

@@ -9,15 +9,23 @@ export default function ClickModal({ cordinates }) {
   ClickModal.propTypes = {
     cordinates: PropTypes.objectOf.isRequired,
   };
+
   function grabModalCordinates() {
-    const modalX = cordinates.clickedX + 20;
-    const modalY = cordinates.clickedY - 20;
+    let modalX = cordinates.clickedX + 20;
+    let modalY = cordinates.clickedY;
+    // check if modal goes past the screen, if so, move the modal in the other direction
+    if ((modalX + 105) > cordinates.maxWidth) {
+      modalX -= 125;
+    } if ((modalY + 120) > cordinates.maxHeight) {
+      modalY -= 120;
+    }
+
     return ({ x: modalX, y: modalY });
   }
   const modalCordinates = grabModalCordinates();
   console.log(cordinates);
   return (
-    <div className="ModalContainer" style={{ top: `${modalCordinates.y}px`, left: `${modalCordinates.x}px` }}>
+    <div className="ModalContainer" data-testid="container" style={{ top: `${modalCordinates.y}px`, left: `${modalCordinates.x}px` }}>
       <div className="charButton">
         <button type="button">
           <img src={Luigi} alt="Luigi" />
