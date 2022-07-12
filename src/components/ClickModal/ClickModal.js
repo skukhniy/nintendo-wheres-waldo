@@ -1,16 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  getDoc, doc, updateDoc,
+} from 'firebase/firestore';
+import db from '../../firebase';
 import './ClickModal.scss';
 import Luigi from '../../assets/Luigi.png';
 import Link from '../../assets/Link.png';
 import Toad from '../../assets/Toad.png';
 
 export default function ClickModal({ cordinates }) {
+  console.log(cordinates);
   ClickModal.propTypes = {
-    cordinates: PropTypes.objectOf.isRequired,
+    cordinates: PropTypes.shape({
+      clickedX: PropTypes.number,
+      clickedY: PropTypes.number,
+      targetX: PropTypes.number,
+      targetY: PropTypes.number,
+      maxWidth: PropTypes.number,
+      maxHeight: PropTypes.number,
+    }).isRequired,
   };
 
-  function grabModalCordinates() {
+  const modalCordinates = () => {
     let modalX = cordinates.clickedX + 20;
     let modalY = cordinates.clickedY;
     // check if modal goes past the screen, if so, move the modal in the other direction
@@ -19,27 +31,49 @@ export default function ClickModal({ cordinates }) {
     } if ((modalY + 120) > cordinates.maxHeight) {
       modalY -= 120;
     }
-
     return ({ x: modalX, y: modalY });
+  };
+
+  function checkChar(char) {
+    console.log('running char check');
+    const charRef = doc(db, 'Cordinates', char);
+    getDoc(charRef)
+      .then((document) => {
+        const charData = document.data();
+        // check if clicked cordinates are within the characters range
+        if ((charData.xmin < cordinates.targetX && cordinates.targetX < charData.xmax)
+        && (charData.ymin < cordinates.targetY && cordinates.targetY < charData.ymax)) {
+          console.log(`You Found ${char}!`);
+          updateDoc(charRef, {
+            isFound: true,
+          });
+        } else {
+          console.log('Sorry, incorrect!');
+        }
+      });
   }
-  const modalCordinates = grabModalCordinates();
-  console.log(cordinates);
+  // grab string arguement
+  // open firebase doc by id (which is identical to char)
+  // grab doc cordinate range
+  // check if current cord range is within those parameters
+  // if so, change found attr in doc
+
   return (
-    <div className="ModalContainer" data-testid="container" style={{ top: `${modalCordinates.y}px`, left: `${modalCordinates.x}px` }}>
+    <div className="ModalContainer" data-testid="container" style={{ top: `${modalCordinates().y}px`, left: `${modalCordinates().x}px` }}>
       <div className="charButton">
-        <button type="button">
+        <button type="button" onClick={() => checkChar('Luigi')}>
           <img src={Luigi} alt="Luigi" />
           <span>Luigi</span>
         </button>
       </div>
       <div className="charButton">
-        <button type="button">
+        <button type="button" onClick={() => checkChar('Toad')}>
           <img src={Toad} alt="Toad" />
           <span>Toad</span>
         </button>
       </div>
       <div className="charButton">
-        <button type="button">
+        <button type="button" onClick={() => checkChar('Link')}>
           <img src={Link} alt="Link" id="linkImg" />
           <span>Link</span>
         </button>

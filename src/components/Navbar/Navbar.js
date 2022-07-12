@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <div className="Navbar">
       <div className="Logo">
-        <h2>{'Super Hide & Seek'}</h2>
+        <h2 data-testid="title">{'Super Hide & Seek'}</h2>
       </div>
       <div className="hidingChars">
         <div>

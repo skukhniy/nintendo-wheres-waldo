@@ -5,6 +5,6 @@ import Navbar from './Navbar';
 describe('Navbar Component', () => {
   it('renders correct heading', () => {
     render(<Navbar />);
-    expect(screen.getByRole('heading').textContent).toMatch(/Super Hide & Seek/i);
+    expect(screen.getByTestId('title').textContent).toMatch(/Super Hide & Seek/i);
   });
 });
