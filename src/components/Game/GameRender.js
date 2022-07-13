@@ -7,6 +7,7 @@ import './GameRender.scss';
 // import db from '../../firebase';
 import gamecube from '../../assets/gamecube.jpeg';
 import ClickModal from '../ClickModal/ClickModal';
+import GameOver from './GameOver';
 
 export default function GameRender({
   foundChars, setFoundChars, setNotif,
@@ -23,13 +24,7 @@ export default function GameRender({
   const [clickModalState, setClickModal] = useState(false);
   const [cordinates, setCordinates] = useState({});
 
-  // const luigiRef = doc(db, 'Cordinates', 'Luigi');
-  // getDoc(luigiRef)
-  //   .then((document) => {
-  //     console.log(document.data());
-  //   });
   function returnCordinates(e) {
-    console.log(e);
     // grab max width/height of the page:
     const mWidth = e.view.outerWidth;
     const mHeight = e.target.height;
@@ -48,8 +43,6 @@ export default function GameRender({
     // reverses the growth to find what the cordinates would be at the original image resolution
     const targX = offsetX / growthFactorX;
     const targY = offsetY / growthFactorY;
-    console.log(`X: ${targX}`);
-    console.log(`Y: ${targY}`);
     return {
       clickedX: offsetX,
       clickedY: offsetY,
@@ -59,8 +52,10 @@ export default function GameRender({
       maxHeight: mHeight,
     };
   }
-  // 1842
-  // 1080
+
+  function gameOverCheck() {
+    return Object.values(foundChars).every((v) => v === true);
+  }
   return (
     <div className="GameContainer">
       <img
@@ -77,8 +72,10 @@ export default function GameRender({
         foundChars={foundChars}
         setFoundChars={setFoundChars}
         setNotif={setNotif}
+        setClickModal={setClickModal}
       />
       )}
+      {gameOverCheck() ? <GameOver /> : null }
     </div>
   );
 }

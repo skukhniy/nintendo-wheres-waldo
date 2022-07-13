@@ -10,7 +10,7 @@ import Link from '../../assets/Link.png';
 import Toad from '../../assets/Toad.png';
 
 export default function ClickModal({
-  cordinates, foundChars, setFoundChars, setNotif,
+  cordinates, foundChars, setFoundChars, setNotif, setClickModal,
 }) {
   console.log(cordinates);
   ClickModal.propTypes = {
@@ -27,6 +27,7 @@ export default function ClickModal({
       Toad: PropTypes.bool,
       Link: PropTypes.bool,
     }).isRequired,
+    setClickModal: PropTypes.func.isRequired,
     setFoundChars: PropTypes.func.isRequired,
     setNotif: PropTypes.func.isRequired,
   };
@@ -44,9 +45,6 @@ export default function ClickModal({
   };
 
   function checkChar(char) {
-    // update the notifcation state
-    setNotif({ greenNotif: false, redNotif: false, charName: char });
-    console.log('running char check');
     const charRef = doc(db, 'Cordinates', char);
     getDoc(charRef)
       .then((document) => {
@@ -71,6 +69,13 @@ export default function ClickModal({
         }
       });
   }
+
+  function charButton(char) {
+  // update the notifcation state
+    setNotif({ greenNotif: false, redNotif: false, charName: char });
+    checkChar(char);
+    setClickModal(false); // turn off modal window
+  }
   // grab string arguement
   // open firebase doc by id (which is identical to char)
   // grab doc cordinate range
@@ -80,19 +85,19 @@ export default function ClickModal({
   return (
     <div className="ModalContainer" data-testid="container" style={{ top: `${modalCordinates().y}px`, left: `${modalCordinates().x}px` }}>
       <div className="charButton">
-        <button type="button" onClick={() => checkChar('Luigi')}>
+        <button type="button" onClick={() => charButton('Luigi')}>
           <img src={Luigi} alt="Luigi" />
           <span>Luigi</span>
         </button>
       </div>
       <div className="charButton">
-        <button type="button" onClick={() => checkChar('Toad')}>
+        <button type="button" onClick={() => charButton('Toad')}>
           <img src={Toad} alt="Toad" />
           <span>Toad</span>
         </button>
       </div>
       <div className="charButton">
-        <button type="button" onClick={() => checkChar('Link')}>
+        <button type="button" onClick={() => charButton('Link')}>
           <img src={Link} alt="Link" id="linkImg" />
           <span>Link</span>
         </button>
