@@ -29,6 +29,15 @@
     flex-direction: row;
     justify-content: space-between;
     width:40%;
+    .foundChar{
+      h3{
+        text-decoration: line-through;
+        opacity: 50%;
+      }
+      img{
+        opacity: 50%;
+      }
+    }
     div{
       display: flex;
       flex-direction: row;

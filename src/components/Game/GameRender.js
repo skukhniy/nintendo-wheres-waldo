@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './GameRender.scss';
 // import {
 //   getDoc, doc,
@@ -7,7 +8,15 @@ import './GameRender.scss';
 import gamecube from '../../assets/gamecube.jpeg';
 import ClickModal from '../ClickModal/ClickModal';
 
-export default function GameRender() {
+export default function GameRender({ foundChars, setFoundChars }) {
+  GameRender.propTypes = {
+    foundChars: PropTypes.shape({
+      Luigi: PropTypes.bool,
+      Toad: PropTypes.bool,
+      Link: PropTypes.bool,
+    }).isRequired,
+    setFoundChars: PropTypes.func.isRequired,
+  };
   const [clickModalState, setClickModal] = useState(false);
   const [cordinates, setCordinates] = useState({});
 
@@ -59,7 +68,13 @@ export default function GameRender() {
           setCordinates(returnCordinates(e));
         }}
       />
-      {clickModalState && <ClickModal cordinates={cordinates} />}
+      {clickModalState && (
+      <ClickModal
+        cordinates={cordinates}
+        foundChars={foundChars}
+        setFoundChars={setFoundChars}
+      />
+      )}
     </div>
   );
 }

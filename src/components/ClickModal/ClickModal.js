@@ -9,7 +9,7 @@ import Luigi from '../../assets/Luigi.png';
 import Link from '../../assets/Link.png';
 import Toad from '../../assets/Toad.png';
 
-export default function ClickModal({ cordinates }) {
+export default function ClickModal({ cordinates, foundChars, setFoundChars }) {
   console.log(cordinates);
   ClickModal.propTypes = {
     cordinates: PropTypes.shape({
@@ -20,6 +20,12 @@ export default function ClickModal({ cordinates }) {
       maxWidth: PropTypes.number,
       maxHeight: PropTypes.number,
     }).isRequired,
+    foundChars: PropTypes.shape({
+      Luigi: PropTypes.bool,
+      Toad: PropTypes.bool,
+      Link: PropTypes.bool,
+    }).isRequired,
+    setFoundChars: PropTypes.func.isRequired,
   };
 
   const modalCordinates = () => {
@@ -47,6 +53,10 @@ export default function ClickModal({ cordinates }) {
           updateDoc(charRef, {
             isFound: true,
           });
+          // update the foundChars state
+          const cloneObj = { ...foundChars };
+          cloneObj[char] = true;
+          setFoundChars(cloneObj);
         } else {
           console.log('Sorry, incorrect!');
         }
