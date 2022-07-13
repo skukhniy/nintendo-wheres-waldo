@@ -9,7 +9,9 @@ import Luigi from '../../assets/Luigi.png';
 import Link from '../../assets/Link.png';
 import Toad from '../../assets/Toad.png';
 
-export default function ClickModal({ cordinates, foundChars, setFoundChars }) {
+export default function ClickModal({
+  cordinates, foundChars, setFoundChars, setNotif,
+}) {
   console.log(cordinates);
   ClickModal.propTypes = {
     cordinates: PropTypes.shape({
@@ -26,6 +28,7 @@ export default function ClickModal({ cordinates, foundChars, setFoundChars }) {
       Link: PropTypes.bool,
     }).isRequired,
     setFoundChars: PropTypes.func.isRequired,
+    setNotif: PropTypes.func.isRequired,
   };
 
   const modalCordinates = () => {
@@ -41,6 +44,8 @@ export default function ClickModal({ cordinates, foundChars, setFoundChars }) {
   };
 
   function checkChar(char) {
+    // update the notifcation state
+    setNotif({ greenNotif: false, redNotif: false, charName: char });
     console.log('running char check');
     const charRef = doc(db, 'Cordinates', char);
     getDoc(charRef)
@@ -50,14 +55,18 @@ export default function ClickModal({ cordinates, foundChars, setFoundChars }) {
         if ((charData.xmin < cordinates.targetX && cordinates.targetX < charData.xmax)
         && (charData.ymin < cordinates.targetY && cordinates.targetY < charData.ymax)) {
           console.log(`You Found ${char}!`);
+          // update the data in the firebase storage
           updateDoc(charRef, {
             isFound: true,
           });
+          console.log('setNotif2 - false');
           // update the foundChars state
           const cloneObj = { ...foundChars };
           cloneObj[char] = true;
           setFoundChars(cloneObj);
+          setNotif({ greenNotif: true, redNotif: false, charName: char });
         } else {
+          setNotif({ greenNotif: false, redNotif: true, charName: char });
           console.log('Sorry, incorrect!');
         }
       });

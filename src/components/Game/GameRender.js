@@ -8,13 +8,16 @@ import './GameRender.scss';
 import gamecube from '../../assets/gamecube.jpeg';
 import ClickModal from '../ClickModal/ClickModal';
 
-export default function GameRender({ foundChars, setFoundChars }) {
+export default function GameRender({
+  foundChars, setFoundChars, setNotif,
+}) {
   GameRender.propTypes = {
     foundChars: PropTypes.shape({
       Luigi: PropTypes.bool,
       Toad: PropTypes.bool,
       Link: PropTypes.bool,
     }).isRequired,
+    setNotif: PropTypes.func.isRequired,
     setFoundChars: PropTypes.func.isRequired,
   };
   const [clickModalState, setClickModal] = useState(false);
@@ -73,6 +76,7 @@ export default function GameRender({ foundChars, setFoundChars }) {
         cordinates={cordinates}
         foundChars={foundChars}
         setFoundChars={setFoundChars}
+        setNotif={setNotif}
       />
       )}
     </div>
