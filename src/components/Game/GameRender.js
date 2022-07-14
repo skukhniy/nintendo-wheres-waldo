@@ -75,7 +75,7 @@ export default function GameRender({
         setClickModal={setClickModal}
       />
       )}
-      {gameOverCheck() ? <GameOver /> : null }
+      {gameOverCheck() ? <GameOver setFoundChars={setFoundChars} /> : null }
     </div>
   );
 }
