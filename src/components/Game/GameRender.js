@@ -10,7 +10,7 @@ import ClickModal from '../ClickModal/ClickModal';
 import GameOver from './GameOver';
 
 export default function GameRender({
-  foundChars, setFoundChars, setNotif,
+  foundChars, setFoundChars, setNotif, setGameStatus,
 }) {
   GameRender.propTypes = {
     foundChars: PropTypes.shape({
@@ -20,6 +20,7 @@ export default function GameRender({
     }).isRequired,
     setNotif: PropTypes.func.isRequired,
     setFoundChars: PropTypes.func.isRequired,
+    setGameStatus: PropTypes.func.isRequired,
   };
   const [clickModalState, setClickModal] = useState(false);
   const [cordinates, setCordinates] = useState({});
@@ -66,7 +67,8 @@ export default function GameRender({
           setCordinates(returnCordinates(e));
         }}
       />
-      {clickModalState && (
+      { // if the gamecube image is clicked, render the modal button select
+      clickModalState && (
       <ClickModal
         cordinates={cordinates}
         foundChars={foundChars}
@@ -74,8 +76,16 @@ export default function GameRender({
         setNotif={setNotif}
         setClickModal={setClickModal}
       />
-      )}
-      {gameOverCheck() ? <GameOver setFoundChars={setFoundChars} /> : null }
+      )
+}
+      { // if the game over state is triggered, render the game over modal screen
+      gameOverCheck() ? (
+        <GameOver
+          setFoundChars={setFoundChars}
+          setGameStatus={setGameStatus}
+        />
+      ) : null
+}
     </div>
   );
 }

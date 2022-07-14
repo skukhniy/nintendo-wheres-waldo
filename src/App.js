@@ -7,6 +7,7 @@ import StartModal from './components/StartModal/StartModal';
 function App() {
   const [foundChars, setFoundChars] = useState({ Luigi: false, Toad: false, Link: false });
   const [foundNotif, setNotif] = useState({ greenNotif: false, redNotif: false, charName: '' });
+  const [gameStart, setGameStatus] = useState(false);
   return (
     <div className="App">
       <Navbar
@@ -19,8 +20,9 @@ function App() {
         setFoundChars={setFoundChars}
         foundNotif={foundNotif}
         setNotif={setNotif}
+        setGameStatus={setGameStatus}
       />
-      <StartModal />
+      {!gameStart ? <StartModal gameStart={gameStart} setGameStatus={setGameStatus} /> : ''}
     </div>
   );
 }

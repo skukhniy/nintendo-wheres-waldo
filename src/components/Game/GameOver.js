@@ -6,9 +6,10 @@ import {
 } from 'firebase/firestore';
 import db from '../../firebase';
 
-export default function GameOver({ setFoundChars }) {
+export default function GameOver({ setFoundChars, setGameStatus }) {
   GameOver.propTypes = {
     setFoundChars: PropTypes.func.isRequired,
+    setGameStatus: PropTypes.func.isRequired,
   };
   function resetGame() {
     const charArray = ['Luigi', 'Toad', 'Link'];
@@ -22,6 +23,7 @@ export default function GameOver({ setFoundChars }) {
         });
     });
     setFoundChars({ Luigi: false, Toad: false, Link: false });
+    setGameStatus(false);
   }
   return (
     <div className="GameOverContainer">
