@@ -4,8 +4,11 @@ import './Navbar.scss';
 import Link from '../../assets/Link.png';
 import Luigi from '../../assets/Luigi.png';
 import Toad from '../../assets/Toad.png';
+import Timer from './Timer';
 
-export default function Navbar({ foundChars, foundNotif }) {
+export default function Navbar({
+  foundChars, foundNotif, time, setTime, running,
+}) {
   Navbar.propTypes = {
     foundChars: PropTypes.shape({
       Luigi: PropTypes.bool,
@@ -13,6 +16,9 @@ export default function Navbar({ foundChars, foundNotif }) {
       Link: PropTypes.bool,
     }).isRequired,
     foundNotif: PropTypes.bool.isRequired,
+    time: PropTypes.number.isRequired,
+    setTime: PropTypes.func.isRequired,
+    running: PropTypes.bool.isRequired,
   };
 
   console.log(foundNotif);
@@ -36,9 +42,11 @@ export default function Navbar({ foundChars, foundNotif }) {
             <h3>Link</h3>
           </div>
         </div>
-        <div className="timerContainer">
-          <h2>0:00</h2>
-        </div>
+        <Timer
+          time={time}
+          setTime={setTime}
+          running={running}
+        />
       </div>
       <div className={`charFound  ${foundNotif.greenNotif ? 'showGreen' : ''} ${foundNotif.redNotif ? 'showRed' : ''}`}>
         {foundNotif.greenNotif ? <p>{`Found ${foundNotif.charName}`}</p> : ''}

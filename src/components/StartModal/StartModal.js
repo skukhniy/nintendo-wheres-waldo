@@ -5,11 +5,16 @@ import Link from '../../assets/Link.png';
 import Luigi from '../../assets/Luigi.png';
 import Toad from '../../assets/Toad.png';
 
-export default function StartModal({ gameStart, setGameStatus }) {
+export default function StartModal({ gameStart, setGameStatus, setRunning }) {
   StartModal.propTypes = {
     gameStart: PropTypes.bool.isRequired,
     setGameStatus: PropTypes.func.isRequired,
+    setRunning: PropTypes.func.isRequired,
   };
+  function startGame() {
+    setGameStatus(true);
+    setRunning(true);
+  }
   return (
     <div>
       <div className={!gameStart ? 'startModal' : 'off'}>
@@ -30,7 +35,7 @@ export default function StartModal({ gameStart, setGameStatus }) {
             <img src={Link} alt="Link" />
           </div>
         </div>
-        <button className="startButton" type="button" onClick={() => setGameStatus(true)}>START</button>
+        <button className="startButton" type="button" onClick={startGame}>START</button>
       </div>
       <div className={!gameStart ? 'Overlay startOverlay' : 'off'} />
     </div>

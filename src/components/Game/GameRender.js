@@ -10,7 +10,7 @@ import ClickModal from '../ClickModal/ClickModal';
 import GameOver from './GameOver';
 
 export default function GameRender({
-  foundChars, setFoundChars, setNotif, setGameStatus,
+  foundChars, setFoundChars, setNotif, setGameStatus, setRunning, setTime, time,
 }) {
   GameRender.propTypes = {
     foundChars: PropTypes.shape({
@@ -21,6 +21,9 @@ export default function GameRender({
     setNotif: PropTypes.func.isRequired,
     setFoundChars: PropTypes.func.isRequired,
     setGameStatus: PropTypes.func.isRequired,
+    setRunning: PropTypes.func.isRequired,
+    setTime: PropTypes.func.isRequired,
+    time: PropTypes.number.isRequired,
   };
   const [clickModalState, setClickModal] = useState(false);
   const [cordinates, setCordinates] = useState({});
@@ -83,6 +86,9 @@ export default function GameRender({
         <GameOver
           setFoundChars={setFoundChars}
           setGameStatus={setGameStatus}
+          setRunning={setRunning}
+          setTime={setTime}
+          time={time}
         />
       ) : null
 }
