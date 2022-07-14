@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/nintendo-wheres-waldo/static/css/main.afcf3952.css",
+    "main.css": "/nintendo-wheres-waldo/static/css/main.35edb85a.css",
     "main.js": "/nintendo-wheres-waldo/static/js/main.88dfa3d0.js",
     "static/media/Toad.png": "/nintendo-wheres-waldo/static/media/Toad.a15848b573afaf10ccb9.png",
     "static/media/Link.png": "/nintendo-wheres-waldo/static/media/Link.5ebedc2437486043c440.png",
     "static/media/gamecube.jpeg": "/nintendo-wheres-waldo/static/media/gamecube.a20ff0dbdab69ce318bf.jpeg",
     "static/media/Luigi.png": "/nintendo-wheres-waldo/static/media/Luigi.2e02f1dd4b0da52b2630.png",
     "index.html": "/nintendo-wheres-waldo/index.html",
-    "main.afcf3952.css.map": "/nintendo-wheres-waldo/static/css/main.afcf3952.css.map",
+    "main.35edb85a.css.map": "/nintendo-wheres-waldo/static/css/main.35edb85a.css.map",
     "main.88dfa3d0.js.map": "/nintendo-wheres-waldo/static/js/main.88dfa3d0.js.map"
   },
   "entrypoints": [
-    "static/css/main.afcf3952.css",
+    "static/css/main.35edb85a.css",
     "static/js/main.88dfa3d0.js"
   ]
 }
