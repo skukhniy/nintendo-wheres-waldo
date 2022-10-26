@@ -1,17 +1,8 @@
 # Where's Waldo (Nintendo Edition)
 
+![where's Waldo img](https://www.stanislavkukhniy.com/static/media/waldo-screenshot.42faa7a6.png)
+
 ### [Live Demo](https://skukhniy.github.io/nintendo-wheres-waldo/)
-
-## Getting started
-
-After cloning the repository, run:
-
-```elm
-npm install
-npm start
-```
-
-The site is now running at `localhost:3000`.
 
 #### 📝 Description
 A twist on the classic "Where's Waldo" game. In this case, you're searching for Nintendo characters from the GameCube era. This project was used as a way for me to practice using a BaaS like Firebase, and to get more practice implementing unit testing in React.
@@ -27,3 +18,14 @@ A twist on the classic "Where's Waldo" game. In this case, you're searching for 
  * SCSS
  * Jest
  * Firebase
+
+## Getting started
+
+After cloning the repository, run:
+
+```elm
+npm install
+npm start
+```
+
+The site is now running at `localhost:3000`.
