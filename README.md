@@ -1,4 +1,4 @@
-# Mock E-Commerce Store
+# Where's Waldo (Nintendo Edition)
 
 ### [Live Demo](https://skukhniy.github.io/nintendo-wheres-waldo/)
 
