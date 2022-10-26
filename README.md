@@ -1,7 +1,5 @@
 # Where's Waldo (Nintendo Edition)
 
-![waldo](https://www.stanislavkukhniy.com/static/media/waldo-screenshot.42faa7a6.png)
-
 ### [Live Demo](https://skukhniy.github.io/nintendo-wheres-waldo/)
 
 #### 📝 Description
